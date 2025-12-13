@@ -4,3 +4,5 @@ videos
 *.txt
 .venv
 __pycache__
+*.jpg
+quotes
