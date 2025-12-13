@@ -1,3 +1,5 @@
+'''Downloads quotes from zenquotes based on your query'''
+
 import requests
 
 class Quote_Downloader:
