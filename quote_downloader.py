@@ -20,7 +20,7 @@ class Quote_Downloader:
             quotes.append(quote['q'])
         return quotes
     
-    def getResults(self) -> dict:
+    def getResults(self) -> list:
         results = []
         
         for result in self.quote:
