@@ -1,8 +1,11 @@
 .env
 videos
 *.mp4
+*.mp3
 *.txt
 .venv
 __pycache__
 *.jpg
 quotes
+*.svg
+*.drawio

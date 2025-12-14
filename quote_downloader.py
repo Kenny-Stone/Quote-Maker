@@ -30,15 +30,14 @@ class QuoteDownloader:
         '''
         with open(location,"a+") as w:
             for result in self.getResults():
-                w.write(f"{result["quote"]} - {result["author"]}")
-                
+                w.write(f"{result["quote"]} - {result["author"]}\n")
                 
     def getQuote(self) -> list[str]:
         '''
         :return: A list of `only` quotes
         :rtype: list[str]
         '''
-        quotes = list
+        quotes = []
         for quote in self.quote:
             quotes.append(quote['q'])
         return quotes
