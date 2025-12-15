@@ -1,9 +1,21 @@
+'''
+########################################################################################################################
+# USES `pexels` api to get videos                                                                                      #
+# NOTE: pexels api requires an api key which can be                                                                    #
+# obtained by creating an account and requesting for an api key                                                        #
+#                                                                                                                      #
+# Uses zenquotes api to get quotes                                                                                     #
+# :see: https://zenquotes.io/api/quoutes/`your-query`                                                                  #
+# Author: Kenny Stone                                                                                                  #
+#                                                                                                                      #
+########################################################################################################################
+'''
 from video_editor import VideoEditor
 from quote_downloader import QuoteDownloader
 from random import randint
 from typing import Final
 QUOTE_KEYWORDS : Final = ["fear","lifestyle", "motivation"]
-USER_NAME : Final = "Kenny Stone"
+USER_NAME : Final = "Kenny's quote of the day"
 PROFILE_IMAGE : Final = "seashore.jpg"
 PADDING_FROM_IMAGE : Final = 50    
 def addUserNameToVideo(video : VideoEditor):
@@ -11,8 +23,8 @@ def addUserNameToVideo(video : VideoEditor):
         USER_NAME,
         _color="#ffffff",
         _position=(50+150 + PADDING_FROM_IMAGE,video.target_resolution[1] * 0.35), # same as image
-        size=(200,50),
-        font_size=30,
+        size=(500,50),
+        font_size=40,
     )
 
 def addProfileToVideo(video : VideoEditor):
@@ -29,20 +41,21 @@ def addQuoteToVideo(video : VideoEditor):
     quotes = quote.getQuote()
     video.addText(
         quotes[randint(0,len(quotes) - 1)],
-        font_size=25,
+        font_size=45,
+        # 50 + the position of the image + the width
         _position=(50+150 + PADDING_FROM_IMAGE,video.target_resolution[1] * 0.38),
         # _position=("center","top"),
         _color="#ffffff",
-        size=(1080 - (50 + 160),300)
+        size=(1080 - (50 + 160 + PADDING_FROM_IMAGE),850)
     )
 
 def main():
-    mainVideo = VideoEditor("4438080.mp4",0.4)
+    mainVideo = VideoEditor("3571264.mp4",0.4)
     addProfileToVideo(mainVideo)
     addUserNameToVideo(mainVideo)
     addQuoteToVideo(mainVideo)
     
-    mainVideo.saveVideo("trial30.mp4")
+    mainVideo.saveVideo("trial36.mp4")
     # mainVideo.addText(
     #     USER_NAME
     # )
