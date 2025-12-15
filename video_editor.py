@@ -5,7 +5,7 @@ class VideoEditor:
         self,
         filename,
         brightness_level : float = 1,
-        target_resolution = (1080,1920)):
+        target_resolution = (1080,1920)):   # (width,height)
         self.clips = []    # stores video to be added to clips
         self.filename = filename    # filename of video data to be read
         self.target_resolution = target_resolution # preferred_resolution for video
