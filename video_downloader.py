@@ -1,5 +1,6 @@
 '''Downloads video from pexels using your API_KEY'''
 import requests
+from EnvironmentReader import *
 class VideoDownloader:
     def __init__(self,video_type,video_duration=15,video_count=1,destination=None,verbose=True):
         self.url = "https://api.pexels.com/videos/search"
@@ -10,8 +11,8 @@ class VideoDownloader:
         self.destination = destination
         self.params = {"query" : self.video_type,"per_page": video_count}
         self.filename = None
-        #TODO: store the API_KEY in an .env
-        self.API_KEY = "3tNf3w5a65QOZ51YF9P95QNbcdABv6PhTBtSeD3LRdTaJbU0J553JRr"
+
+        self.API_KEY = getEnv("api_key")        # get's value from .env file
         self.headers = {"Authorization" :self.API_KEY}
         self.response = requests.get(self.url,headers=self.headers,params=self.params)
     
