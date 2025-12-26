@@ -15,7 +15,12 @@ class VideoEditor:
         self.clips.append(self.main_video_clip)    # adds main video to video list
 
         
-    def addText(self,_text : str,font_size : int = 60 ,_color : str ="#000000",_bg_color : str = None,_position = (50,50),duration="complete",_font=None,size=(100,100)):
+    def addText(self,_text : str,font_size : int = 60 ,
+                _color : str ="#000000",
+                _bg_color : str = None,
+                _position = (50,50),
+                duration="complete",
+                _font=None,size=(100,100)):
         '''
         :param _text: Text to be added to video
         :type _text: str
