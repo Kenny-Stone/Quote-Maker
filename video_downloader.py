@@ -1,6 +1,6 @@
 '''Downloads video from pexels using your API_KEY'''
 import requests
-from EnvironmentReader import *
+from envReader import *
 class VideoDownloader:
     def __init__(self,video_type,video_duration=15,video_count=1,destination=None,verbose=True):
         self.url = "https://api.pexels.com/videos/search"
