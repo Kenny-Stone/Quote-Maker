@@ -5,7 +5,7 @@
 # obtained by creating an account and requesting for an api key                   #
 #                                                                                 #
 # Uses zenquotes api to get quotes                                                #
-# :see: https://zenquotes.io/api/quoutes/`your-query`                             #
+# :see: https://zenquotes.io/api/quotes/`your-query`                             #
 # Author: Kenny Stone                                                             #
 #                                                                                 #
 ###################################################################################
@@ -15,11 +15,46 @@ from quote_downloader import QuoteDownloader
 from datetime import datetime
 from random import randint
 from typing import Final
-QUOTE_KEYWORDS : Final = ["fear","lifestyle", "motivation"]
+# QUOTE_KEYWORDS : Final = ["fear","lifestyle", "motivation"]
+
+QUOTE_KEYWORDS = [
+"Anxiety",
+"Change",
+"Choice",
+"Confidence",
+"Courage",
+"Death",
+"Dreams",
+"Excellence",
+"Failure",
+"Fairness",
+"Fear",
+"Forgiveness",
+"Freedom",
+"Future",
+"Happiness",
+"Inspiration",
+"Kindness",
+"Leadership",
+"Life",
+"Living",
+"Love",
+"Pain",
+"Past",
+"Success",
+"Time",
+"Today",
+"Truth",
+"Work"
+]
+
+
+
+
 USER_NAME : Final = "Kenny's quote of the day"
 PROFILE_IMAGE : Final = "seashore.jpg"
 PADDING_FROM_IMAGE : Final = 65    
-def addUserNameToVideo(video : VideoEditor):
+def addUserNameToVideo(video : VideoEditor) -> None:
     video.addText(
         USER_NAME,
         _color="#cdcccc",
@@ -27,8 +62,22 @@ def addUserNameToVideo(video : VideoEditor):
         size=(500,50),
         font_size=30,
     )
+    
+def addMusicToVideo(video : VideoEditor) -> None:
+    video.addAudio()
+    
 
-def addProfileToVideo(video : VideoEditor):
+def addProfileToVideo(video : VideoEditor) -> None:
+    '''
+    #### Adds an image preferrable the profile image to the video
+    #### Note By Author:
+            This function exist because I wanted a way to add my own brand image to stand out.
+            Basically any video I posted will contain that image at a certain postion. This will
+            mostly be my accounts profile
+            
+    :param video: Takes an object of the class VideoEditor as an argument
+    :type video: VideoEditor
+    '''
     video.addImage(
         PROFILE_IMAGE,
         _position = (50,video.target_resolution[1] * 0.35),  #  (width,height)   image should be displayed at 30% from the top
@@ -36,7 +85,7 @@ def addProfileToVideo(video : VideoEditor):
     )
     
 
-def addQuoteToVideo(video : VideoEditor):
+def addQuoteToVideo(video : VideoEditor) -> None:
     quote = QuoteDownloader(QUOTE_KEYWORDS[randint(0,len(QUOTE_KEYWORDS) - 1)])
     quote.storeQuotes()
     quotes = quote.getQuote()
@@ -70,15 +119,23 @@ def addDateToVideo(video : VideoEditor):
 
 
 def main():
-    mainVideo = VideoEditor("3571264.mp4",0.4)
-    addProfileToVideo(mainVideo)
-    addUserNameToVideo(mainVideo)
-    addQuoteToVideo(mainVideo)
-    addDateToVideo(mainVideo)
-    mainVideo.saveVideo("trial44.mp4")
-    # mainVideo.addText(
-    #     USER_NAME
-    # )
+    try:
+        mainVideo = VideoEditor(video_filename="videos/3971351.mp4",
+                                audio_filename="audio/1438_Inspirational_Corporate.mp3",
+                                volume=1,
+                                brightness_level=0.4)
+    except Exception as e:
+        print("Error during processing: ",e)
+    else:
+        addProfileToVideo(mainVideo)
+        addUserNameToVideo(mainVideo)
+        addQuoteToVideo(mainVideo)
+        addDateToVideo(mainVideo)
+        addMusicToVideo(mainVideo)
+        mainVideo.saveVideo("new9.mp4",threads = 4)
+    finally:
+        print("Process Completed.")
     
 if __name__ == "__main__":
+    # TODO: take in arguments and that will decide the name of the file
     main()

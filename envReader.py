@@ -120,7 +120,7 @@ def scanTokens():
 
 
 # %%
-def getValue(key : str) -> str:
+def getEnv(key : str) -> str:
     source = readFile(".env")
     Reader.lexicals(source) # store data in reader static class to initiate
     scanTokens()
