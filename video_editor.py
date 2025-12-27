@@ -1,5 +1,4 @@
 from moviepy import *
-from PIL import Image, ImageFilter
 class VideoEditor:
     '''
     :param audio_filename: If audio filename is empty there will be no audio in the video
@@ -28,7 +27,6 @@ class VideoEditor:
         self.main_video_clip = self.main_video_clip.with_effects([vfx.MultiplyColor(brightness_level)]) # reduces video brightness level
         self.main_video_clip = self.main_video_clip.with_memoize(True)
         self.clips.append(self.main_video_clip)    # adds main video to video list
-
         
     def addText(self,_text : str,font_size : int = 60 ,
                 _color : str ="#000000",
@@ -113,6 +111,10 @@ class VideoEditor:
         self.audio_clip = audio_clip
         # if user sets volume
         self.main_video_clip = self.main_video_clip.with_audio(audio_clip)
+        # replace the first clip with the new one since moviepy is immutable the array is storing
+        # the previous clip that do not contain a sound
+        # the first video is created as soon as the class is created
+        self.clips[0] = self.main_video_clip    
         # self.main_video_clip.audio = audio_clip
         
         
@@ -123,9 +125,9 @@ class VideoEditor:
         print(self.clips)
         video = video.with_memoize(True)
         video.write_videofile(edited_video_name,
-                              audio_codec = "aac",
-                              codec="libx264",
-                              temp_audiofile = "temp-audio.m4a",
+                            audio_codec = "aac",
+                            codec="libx264",
+                            temp_audiofile = "temp-audio.m4a",
                             fps=self.main_video_clip.fps,
                             audio_bitrate="192k",
                             remove_temp = True,

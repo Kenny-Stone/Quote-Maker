@@ -120,8 +120,10 @@ def addDateToVideo(video : VideoEditor):
 
 def main():
     try:
+        # set video file to read data from
+        # set audio file to read data from
         mainVideo = VideoEditor(video_filename="videos/3971351.mp4",
-                                audio_filename="audio/1438_Inspirational_Corporate.mp3",
+                                audio_filename="audio/inspirational_sound.mp3",
                                 volume=1,
                                 brightness_level=0.4)
     except Exception as e:
@@ -129,10 +131,10 @@ def main():
     else:
         addProfileToVideo(mainVideo)
         addUserNameToVideo(mainVideo)
-        addQuoteToVideo(mainVideo)
+        # addQuoteToVideo(mainVideo)    # requires internet connection
         addDateToVideo(mainVideo)
         addMusicToVideo(mainVideo)
-        mainVideo.saveVideo("new9.mp4",threads = 4)
+        mainVideo.saveVideo("new12.mp4",threads = 4)
     finally:
         print("Process Completed.")
     
