@@ -134,4 +134,3 @@ class VideoEditor:
                             threads=threads)
         video.close()       # closes video writing
         print("Video saved successfully!")
-        
