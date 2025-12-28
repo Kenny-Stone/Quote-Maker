@@ -122,7 +122,6 @@ class VideoEditor:
         
     def saveVideo(self,edited_video_name,threads=None):
         video : CompositeVideoClip = CompositeVideoClip(self.clips)
-        print(self.clips)
         video = video.with_memoize(True)
         video.write_videofile(edited_video_name,
                             audio_codec = "aac",
@@ -134,4 +133,3 @@ class VideoEditor:
                             threads=threads)
         video.close()       # closes video writing
         print("Video saved successfully!")
-        

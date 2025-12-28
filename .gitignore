@@ -11,7 +11,4 @@ quotes
 *.drawio
 .*
 test.ipynb
-<<<<<<< HEAD
-=======
-audio
->>>>>>> Threads
+*.png
